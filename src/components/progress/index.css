@@ -1,0 +1,38 @@
+.area_prog{
+    width: 100%;height: 70%; 
+    background-color: var(--progressArea-ground);
+    z-index: 20;position: absolute;
+} 
+ 
+.d2 .area_send .btn_area button:hover{
+    opacity: 0.4;transition: 0.51s ease-in;cursor: pointer;
+}
+.area_prog svg{
+    position: relative;
+    width: 200px;
+    height: 200px;
+    z-index: 1000;
+  }
+.area_prog svg text{font-size: 2rem;} 
+.area_prog svg circle {
+    width: 100%;
+    height: 100%;
+    fill: none; 
+     /* transition: stroke-dashoffset 0.35s; */
+    stroke:var(--progressArea-ground);
+    stroke-width: 10;
+    stroke-linecap: round;
+    stroke-dasharray: 480; 
+    stroke-dashoffset:480;
+    transform: translate(6px, 10px);
+}
+.area_prog svg circle:nth-child(1){
+      stroke-dashoffset: 0; 
+      stroke: #6e808b;
+      transform: translate(5px, 5px);
+}
+.area_prog svg circle:nth-child(2){
+    stroke-dashoffset:var(--anm);
+    stroke: #ff0479;
+    
+}
