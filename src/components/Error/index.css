@@ -1,0 +1,7 @@
+.error{width: 90%;height: 80%;}
+.error img{width: 100%;height: 75%;}
+.error h2{
+    margin-top: 0;text-align: center;
+    font-size: x-large;font-family: fantasy;font-weight: 300;
+    color: red;
+}
