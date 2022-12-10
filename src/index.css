@@ -1,3 +1,9 @@
+:root{
+  --background:rgb(19, 36, 49);
+  --color_up: rgb(251, 2, 97);
+  --backgroundArea2:rgb(44, 60, 75);
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -6,8 +12,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+ 
+.center{
+  display:flex;align-items: center;align-content: center;justify-content: center;
+}
+.center-h{
+  display:flex;justify-content: center;
+}
+.main-center{
+  top:0;right:0;bottom:0;left:0; margin :auto; position: absolute;
 }
