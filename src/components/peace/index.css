@@ -1,0 +1,55 @@
+.peace{
+    width: 90%;height: 65px;
+    margin-top: 10px;
+    border-radius: 18px;
+    position:relative;
+    background-color: var(--background);
+    display: flex;flex-direction: row;
+}
+.area2 .peace:hover{
+    cursor: pointer;
+    transition: 0.3s ease-in;
+    box-shadow: 1px 1px 7px 1px rgb(62, 87, 97);
+} 
+.area2 .peace  img{ 
+    height: 34px;width: 34px;
+    background-color: var(--image-background);
+    margin: 17px 10px ;margin-right: 0px;
+    border-radius: 50%;
+}
+.area2 .peace > div{
+    width: 78%;height: 95%;padding-left: 5px;  
+    flex-direction: column; 
+}
+.area2 .peace div h2{
+    color: white;font-size: 17px; 
+     height: 15px;font-family:'Times New Roman', Times, serif; 
+     margin-top: 5px;margin-bottom: 5px;
+}
+.area2 .peace div span{
+    color: rgba(214, 214, 214, 0.698);font-size: 13px;
+}
+.area2 .peace svg{margin: auto 5px;text-align: center;}
+
+.area2 .peace button[role="delete"]{
+    width: 35px;height: 50px;
+    margin: 5px 5px; 
+    border: 0px;
+    background-color: rgb(20, 37, 47); 
+    background-image: url('../../icons/delete.png');
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.area2 .peace button:hover{
+    opacity: 0.4;transition: 0.51s ease-in;cursor: pointer;
+}
+
+/* for DeleteElement*/
+.peace button{
+     width: 80px; height: 35px;border-radius: 15px; margin: auto auto auto auto;
+     background: none;
+     color: white;font-size: smaller;border: 2px solid white;
+}
+.peace button:nth-child(2){
+    width: 100px;border-color: var(--color_up);
+}
