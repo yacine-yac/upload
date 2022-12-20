@@ -38,8 +38,8 @@ form{width: 100%;height:100%;}
       /* overflow-y: scroll; */
       position: relative;
       /* z-index: 0; */
-    width: 100%;height: 70%;
-    background-color: var(--backgroundArea2);
+    width: 100%;height: 70%; 
+    background-color: var(--backgroundArea2); 
     /* margin: 0px;  */
 }
 .area2 .area21{border:1px solid red;margin: auto;

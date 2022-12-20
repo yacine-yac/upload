@@ -1,6 +1,6 @@
 .peace{
     width: 90%;height: 65px;
-    margin-top: 10px;
+    margin: 10px auto;
     border-radius: 18px;
     position:relative;
     background-color: var(--background);
@@ -52,4 +52,10 @@
 }
 .peace button:nth-child(2){
     width: 100px;border-color: var(--color_up);
+}
+
+/* for progress peace*/
+.pourcent{
+    width: 60px; 
+    color:var(--color_up);font-size: 1.1rem;margin-right: 0;
 }
