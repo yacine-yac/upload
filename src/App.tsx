@@ -7,14 +7,14 @@ import ErrorHandler from './components/Error';
 import Peace from './components/peace';
 import Progress from './components/progress';
 import Welcom from './components/welcom';
-import Reader,{useListReaders} from "./custom/reader";
+import {useListReaders} from "./custom/reader";
 function App() {
-  const [inputEnable,setInputEnable]=useState<boolean>(false);
-  const [files,setFiles]=useState([]);
-  const filesCollection=useListReaders({onLoad:()=>{console.log('hello')}}); 
+  // const [inputEnable,setInputEnable]=useState<boolean>(false);
+  // const [files,setFiles]=useState([]);
+  const filesCollection=useListReaders();console.log(filesCollection.files ); 
   const handleInput=(e: ChangeEvent<HTMLInputElement>)=>{
-             filesCollection.setElement(e.target);
-             setInputEnable(!inputEnable);
+            filesCollection.setElement(e.target);
+            //  setInputEnable(!inputEnable);
             // const areaRelease=document.getElementById('area_release') as HTMLElement;
           // e.target?.filesCollection?
           // Object.values(e.target.files ?? {}).forEach(x=>{
@@ -32,23 +32,26 @@ function App() {
             
           // filesCollection.readAsDataURL(e.target.filesCollection);
         }
-  // useEffect(()=>{
-  //   console.log("eee",filesCollection);
+  useEffect(()=>{
+    console.log("final ",filesCollection);
+    // filesCollection.loading();
     
-  // },[filesCollection]);
-  //  {filesCollection.progress.total+"hello"+filesCollection.progress.current} 
+  },[filesCollection.element]);
+  //   
   return  <>
   <div className="d1 main-center">
       <form method="POST" encType="multipart/form-data" > 
                 <div className="area1 center">
+                  {/* {filesCollection.progress.total+"hello"+filesCollection.progress.current} */}
                     <h1>Uploading System</h1> 
-                    <label><input  disabled={inputEnable} onChange={handleInput} type="file" name="uploading[]" id="upload" multiple /></label>
+                    <label><input  disabled={Boolean(filesCollection.files.length)} onChange={handleInput} type="file" name="uploading[]" id="upload" multiple /></label>
                 </div>
                 {/* <Progress /> */}
                 <div  className="area2 center-h">
                       {/* <div className="area21" id="area_release"> */}
-                      {inputEnable ? files.map(x=><Peace img={""} name={""} extention={""} />) 
-                                   :   <Welcom /> }
+                      {/* { filesCollection.files.length>0  
+                                  //  ? filesCollection.files.map((x,y)=><Peace key={y} img={""} name={x.name} extention={x.size} /> )
+                                   :   <Welcom /> } */}
 {/* <ErrorHandler/> */}
                       {/* <Peace img="./../../icons/close.png" name={'dedd dsdfsdv sdfsfc cxc'} extention={'dds'}   /> */}
                 </div>
