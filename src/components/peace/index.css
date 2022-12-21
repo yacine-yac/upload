@@ -45,12 +45,12 @@
 }
 
 /* for DeleteElement*/
-.peace button{
+.peace button[datatype="demo"]{
      width: 80px; height: 35px;border-radius: 15px; margin: auto auto auto auto;
      background: none;
      color: white;font-size: smaller;border: 2px solid white;
 }
-.peace button:nth-child(2){
+.peace button[datatype="demo"]:nth-child(2){
     width: 100px;border-color: var(--color_up);
 }
 
@@ -58,4 +58,46 @@
 .pourcent{
     width: 60px; 
     color:var(--color_up);font-size: 1.1rem;margin-right: 0;
+}
+.pro_bar{
+    width: 90%;height:30%;    
+} 
+.pro_bar progress{
+    height: 10px;width: 95%;
+    margin-top: 5px;
+    border-radius: 9px; 
+    background-color: rgb(39, 70, 88); 
+}
+progress::-webkit-progress-bar {
+    background: transparent;
+}
+progress::-webkit-progress-value {  
+    border-radius: 12px;
+    background: rgb(255, 2, 78);
+}
+
+/**Error */
+.peace-error div h2{
+    opacity: 0.6;
+}
+.peace-error img{opacity: 1;}
+
+/* Reload*/
+.peace-reload{
+    width: 100%;height: 100%;
+    margin-left: 5px; 
+}
+button[role="reload"]{
+    width: 30px;height: 60%;
+    background: transparent no-repeat center  url("../../icons/reload.png"); margin-right: 4%;
+}
+.reloading-event{
+    opacity: 0.6;
+    animation: reloading 1.6s ease-out infinite ;
+}
+@keyframes reloading {
+    0%{ transform: rotateZ(0deg);} 
+    100%{
+        transform: rotateZ(360deg);
+    }
 }

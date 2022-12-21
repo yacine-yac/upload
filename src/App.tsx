@@ -5,6 +5,8 @@ import Peace from './components/peace';
 import Progress from './components/progress';
 import Welcom from './components/welcom';
 import ProgressPeace from './components/peace/progressPeace';
+import PeaceError from './components/peace/errorPeace';
+import PeaceReload from './components/peace/PeaceReload';
 function App() {
  
   const handleInput=()=>{
@@ -22,9 +24,11 @@ function App() {
                       {/* <div className="area21" id="area_release"> */}
                             {/* <Welcom />  */}
 {/* <ErrorHandler/> */}
-                 {/* <ProgressPeace img=" " name="" size={5} fraction={5}  />   */}
-                {/* <Peace img=" " name="dsdqd" size={5}/>
-                <Peace img=" " name="dsdqd" size={5}/> */}
+                 {/* <ProgressPeace img=" "  fraction={65}  />   */}
+                 <PeaceReload name={'dsfsdf fcsdf'} size={'206 mbp'} />  
+                 <PeaceError name="ddddd" messageError={'An error is occurs to your file'} />
+                {/* <Peace img=" " name="dsdqd" size={5}/>*/}
+                <Peace img=" " name="dsdqd" size={5}/> 
                 </div>
                 {/* <ButtonsArea  />  */}
       </form>  

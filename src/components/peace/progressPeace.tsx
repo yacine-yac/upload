@@ -1,12 +1,12 @@
-export default function ProgressPeace({img,name,size,fraction}:{img:string,name:string,size:number,fraction:number}){
+import "./index.css";
+export default function ProgressPeace({img ,fraction}:{img:string,fraction:number}){
     return <>
     <div className="peace">
                 <img src={img} />
-                <div className="center-h">
-                            <h2>{name}</h2>
-                            <span>{size}</span>
+                <div className="pro_bar center-v">
+                    <progress value={fraction} max="100"></progress> 
                 </div>
-                <h2 className="pourcent main-center center">{fraction}</h2> 
+                <h2 className="pourcent main-center center">{fraction+"%"}</h2> 
     </div> 
     </>
 }
