@@ -5,8 +5,8 @@ export default function Peace({img,name,size}:{img:string,name:string,size:numbe
     return <>
     <div className="peace">
        {/*  <div className="show_p"> </div>file="${name}" type="${type}" */}
-                {/* <DeleteElement /> */}
-                <PeacElement img={img} name={name} size={size} />
+                <DeleteElement />
+                {/* <PeacElement img={img} name={name} size={size} /> */}
         
     </div> 
     </>

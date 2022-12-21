@@ -6,8 +6,10 @@ import ButtonsArea from './components/ButtonsArea';
 import ErrorHandler from './components/Error';
 import Peace from './components/peace';
 import Progress from './components/progress';
-import Welcom from './components/welcom';
-import {useListReaders} from "./custom/reader";
+import Welcom from './components/welcom'; 
+import ProgressPeace from './components/peace/progressPeace';
+import PeaceError from './components/peace/errorPeace';
+import PeaceReload from './components/peace/PeaceReload'; 
 function App() {
   // const [inputEnable,setInputEnable]=useState<boolean>(false);
   // const [files,setFiles]=useState([]);
@@ -54,6 +56,13 @@ function App() {
                                    :   <Welcom /> } */}
 {/* <ErrorHandler/> */}
                       {/* <Peace img="./../../icons/close.png" name={'dedd dsdfsdv sdfsfc cxc'} extention={'dds'}   /> */}
+ 
+                 {/* <ProgressPeace img=" "  fraction={65}  />   */}
+                 <PeaceReload name={'dsfsdf fcsdf'} size={'206 mbp'} />  
+                 <PeaceError name="ddddd" messageError={'An error is occurs to your file'} />
+                {/* <Peace img=" " name="dsdqd" size={5}/>*/}
+                <Peace img=" " name="dsdqd" size={5}/> 
+ 
                 </div>
                 {/* <ButtonsArea  />  */}
       </form>  
