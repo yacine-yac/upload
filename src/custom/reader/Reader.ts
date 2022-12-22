@@ -1,7 +1,7 @@
 import React from "react";
-
+import convertSize from "convert-size";
 export class Reader {
-    private reader: FileReader; 
+    public reader: FileReader; 
     public result: any;
     public current:number | null=null;
     public total:number | null=null;
@@ -17,28 +17,32 @@ export class Reader {
         this.name=file.name;
         this.size=file.size;
         this.reader.readAsDataURL(file);
-        this.getResult();
-        //  this.getProgress();
-        // console.log(this.result,'resuykt');
+       
     } 
+    startRead(){
+        this.reader.onloadstart=(e)=>{
+            this.isProgress=true;  
+        } 
+    }
+    endRead(){
+            this.reader.onloadend=(e)=>{ 
+                this.flag=true; 
+                this.isProgress=false;
+                this.result=this.reader.result;
+            }
+    }
     getProgress(setFiles:React.Dispatch<React.SetStateAction<Reader[]>>) {
-        this.reader.onprogress = (e: ProgressEvent) => {
-           this.isProgress=true;
-            // if(!e.lengthComputable){
-              this.reader.dispatchEvent(new Event('error'));
+        this.reader.onprogress = (e: ProgressEvent) => {  
             if (e.lengthComputable) {
                 this.current=e.loaded;
-                this.total=e.total;
+                this.total=e.total; 
                 this.progress=Math.round((e.loaded/e.total)*100);
                 setFiles(prev=>[...prev]); 
-            }
-            if(e.loaded===e.total) this.isProgress=false;
-            //  
+            } 
         };
     }
     getResult() {
-        this.reader.onload = (e) => {
-            this.flag=true;
+        this.reader.onloadend = (e) => { 
             this.result = this.reader.result;
         };
     }
@@ -46,6 +50,8 @@ export class Reader {
         this.reader.onerror=(e)=>{
             this.isError=true;
             this.flag=false;
+            this.isProgress=false;
+            this.progress=0;
             this.errorMessage="Error occurred reading file";
             console.log("eeror",e);
         }

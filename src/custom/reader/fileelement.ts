@@ -5,13 +5,13 @@ import { ListReadersArgs } from "./listfiles";
  * @property {string | null} message message if condition not satisfied
 */
 class  FileElement{
-    private static type:string;
+    private static type:string[];
     public static size:number;
     private status:boolean; 
     public message:string | null=null;
     constructor(fireWall:ListReadersArgs['fireWall']){
          this.status=false;
-         FileElement.type=fireWall?.type as string;
+         FileElement.type=fireWall?.type as string[];
          FileElement.size=fireWall?.size as number;
     }
     checkSize(file:File){
@@ -21,7 +21,7 @@ class  FileElement{
         }
     }
     checkType(file:File){
-          if(file.type !==FileElement.type){
+          if(!FileElement.type.includes(file.type)){
                this.status=true;
                this.message="file type is not accpeted";
           }
