@@ -7,9 +7,9 @@ const useListReaders:ListReaders=(fireWall)=> {
     const [element,setElement]=useState<null | HTMLInputElement>(null);
     const [files,setFiles]=useState<Reader[]>([]); 
     const [rejected,setRejected]=useState<rejectedFile[]>([]);
-    const fileElement=new FileElement(fireWall);
+    const fileElement=useMemo(()=>{ return new FileElement(fireWall)},[]);
     
-    const setFilesToRead=(file:File)=>{
+    const setFilesToRead= (file:File)=>{
         const Reading=new Reader(file);  
         Reading.startRead(); 
         Reading.getProgress(setFiles);
@@ -18,11 +18,11 @@ const useListReaders:ListReaders=(fireWall)=> {
         Reading.endRead(); 
         Reading.checkError(); 
         setFiles(prev=>{return [...prev,Reading]});  
-    } 
+    }  
 /* eslint-disable */
     useEffect(()=>{
             element!==null &&  Object.values(element?.files ?? {}).forEach((item:File) => {
-                     console.log('ttt',item.type);
+                    console.log(item.type);
                     fireWall && (fileElement.checkSize(item),fileElement.checkType(item));
                     if(fileElement.getStatus()){
                         setRejected(prev=>{

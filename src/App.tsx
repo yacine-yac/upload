@@ -10,32 +10,18 @@ import Welcom from './components/welcom';
 import ProgressPeace from './components/peace/progressPeace';
 import PeaceError from './components/peace/errorPeace';
 import PeaceReload from './components/peace/PeaceReload'; 
+import { useListReaders } from "./custom/reader";
+import {fireWall} from "./custom/reader/config";
 function App() {
   // const [inputEnable,setInputEnable]=useState<boolean>(false);
   // const [files,setFiles]=useState([]);
-  const filesCollection=useListReaders();console.log(filesCollection.files ); 
+ 
+  const filesCollection= useListReaders(fireWall);   
   const handleInput=(e: ChangeEvent<HTMLInputElement>)=>{
             filesCollection.setElement(e.target);
-            //  setInputEnable(!inputEnable);
-            // const areaRelease=document.getElementById('area_release') as HTMLElement;
-          // e.target?.filesCollection?
-          // Object.values(e.target.files ?? {}).forEach(x=>{
-          //     filesCollection.readFile(x); 
-          //     console.log('edded',areaRelease);
-          // });
-        //  let rd= e.target.files;
-        //   let rf= e.target?.files as FileList  ;
-        //   // filesCollection.readFile(rf);
-//  e.target?.filesCollection.forEach((element:FileReader) => {
-//    console.log("eee",element);      
-// });
-           
-          // reactDom.createPortal(<Peace img={""} name={""} extention={""} />,areaRelease);
-            
-          // filesCollection.readAsDataURL(e.target.filesCollection);
         }
   useEffect(()=>{
-    console.log("final ",filesCollection);
+    // console.log("final ",filesCollection);
     // filesCollection.loading();
     
   },[filesCollection.element]);
@@ -43,25 +29,22 @@ function App() {
   return  <>
   <div className="d1 main-center">
       <form method="POST" encType="multipart/form-data" > 
-                <div className="area1 center">
-                  {/* {filesCollection.progress.total+"hello"+filesCollection.progress.current} */}
+                <div className="area1 center"> 
                     <h1>Uploading System</h1> 
-                    <label><input  disabled={Boolean(filesCollection.files.length)} onChange={handleInput} type="file" name="uploading[]" id="upload" multiple /></label>
+                    <label><input disabled={Boolean(filesCollection.files.length)}  onChange={handleInput} type="file" name="uploading[]" id="upload" multiple /></label>
                 </div>
                 {/* <Progress /> */}
                 <div  className="area2 center-h">
                       {/* <div className="area21" id="area_release"> */}
-                      {/* { filesCollection.files.length>0  
-                                  //  ? filesCollection.files.map((x,y)=><Peace key={y} img={""} name={x.name} extention={x.size} /> )
-                                   :   <Welcom /> } */}
-{/* <ErrorHandler/> */}
-                      {/* <Peace img="./../../icons/close.png" name={'dedd dsdfsdv sdfsfc cxc'} extention={'dds'}   /> */}
- 
-                 {/* <ProgressPeace img=" "  fraction={65}  />   */}
-                 <PeaceReload name={'dsfsdf fcsdf'} size={'206 mbp'} />  
-                 <PeaceError name="ddddd" messageError={'An error is occurs to your file'} />
-                {/* <Peace img=" " name="dsdqd" size={5}/>*/}
-                <Peace img=" " name="dsdqd" size={5}/> 
+                      {   filesCollection.files.length>0   && filesCollection.files.map((x,y)=>{
+                              return   x.flag ? <Peace key={y} img={x.result} name={x.name} size={x.size}  />
+                                : x.isProgress ? <ProgressPeace key={y} img={x.result} fraction={x.progress} />
+                                :x.isError ?  <PeaceReload key={y} name={x.name} size={String(x.size)} /> :null; 
+                            })}
+{/* <ErrorHandler/> */} 
+                      {filesCollection.rejected.length>0 && filesCollection.rejected.map((x,y)=><PeaceError key={y} name={x.name} messageError={x.message}  />)}
+                      {filesCollection.element===null &&   <Welcom />}
+                        
  
                 </div>
                 {/* <ButtonsArea  />  */}
