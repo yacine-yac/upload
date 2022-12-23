@@ -22,8 +22,7 @@ function App() {
         }
   useEffect(()=>{
     // console.log("final ",filesCollection);
-    // filesCollection.loading();
-    
+    // filesCollection.loading(); 
   },[filesCollection.element]);
   //   
   return  <>

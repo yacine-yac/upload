@@ -12,12 +12,13 @@ export class Reader {
     public errorMessage:string | null =null;
     public name:string;
     public size:number;
-    constructor(file: File) {
+    public selfDestroy:(name:string)=>void;
+    constructor(file: File,destroy:(name:string)=>void) {
         this.reader = new FileReader();
         this.name=file.name;
         this.size=file.size;
         this.reader.readAsDataURL(file);
-       
+        this.selfDestroy=destroy;
     } 
     startRead(){
         this.reader.onloadstart=(e)=>{
@@ -55,5 +56,8 @@ export class Reader {
             this.errorMessage="Error occurred reading file";
             console.log("eeror",e);
         }
+    }
+    destroy(){
+        this.selfDestroy(this.name);
     }
 }
