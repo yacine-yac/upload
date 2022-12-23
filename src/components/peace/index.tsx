@@ -1,12 +1,12 @@
 import "./index.css";
 import DeleteElement from "./DeleteElement";
 import PeacElement from "./peaceElement";
-export default function Peace({img,name,size}:{img:string,name:string,size:number}){
+export default function Peace({img,name,size,state}:{img:string,name:string,size:number,state:boolean}){
     return <>
-    <div className="peace">
+    <div state-value={String(state)} className="peace">
        {/*  <div className="show_p"> </div>file="${name}" type="${type}" */}
-                <DeleteElement />
-                {/* <PeacElement img={img} name={name} size={size} /> */}
+                {/* <DeleteElement /> */}
+                <PeacElement state={state} img={img} name={name} size={size} />
         
     </div> 
     </>
