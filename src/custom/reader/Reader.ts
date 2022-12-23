@@ -57,7 +57,7 @@ export class Reader {
             console.log("eeror",e);
         }
     }
-    destroy(){
+    destroy(){ 
         this.selfDestroy(this.name);
     }
 }

@@ -15,8 +15,9 @@ const useListReaders:ListReaders=(fireWall)=> {
      */
     const destroyFileReader=useCallback((name:string)=>{ 
             setFiles(prev=>{
-                prev.forEach((x,y)=>{ x.name===name &&(prev.splice(y,1))});
-                return prev;
+                prev.forEach((x,y)=>{ x.name===name && (prev.splice(y,1))});
+                if(prev.length===0){setElement(null);setRejected([]);}
+                return [...prev];
             });  
     },[files]);  
     const setFilesToRead= (file:File)=>{
@@ -44,8 +45,7 @@ const useListReaders:ListReaders=(fireWall)=> {
                         fileElement.initStatus();
                     }else{
                         setFilesToRead(item);
-                    }
-                  
+                    } 
               });
     },[element]);
     
