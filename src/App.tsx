@@ -36,7 +36,7 @@ function App() {
                 <div  className="area2 center-h">
                       {/* <div className="area21" id="area_release"> */}
                       {   filesCollection.files.length>0   && filesCollection.files.map((x,y)=>{
-                              return   x.flag ? <Peace key={y} img={x.result} name={x.name} size={x.size} state={false}  />
+                              return   x.flag ? <Peace key={y} img={x.result} name={x.name} size={x.size} state={false} deletePeace={x.destroy}  />
                                 : x.isProgress ? <ProgressPeace key={y} img={x.result} fraction={x.progress} />
                                 :x.isError ?  <PeaceReload key={y} name={x.name} size={String(x.size)} /> :null; 
                             })}
