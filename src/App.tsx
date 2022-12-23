@@ -1,4 +1,4 @@
-import {useState,createRef, useEffect, ChangeEvent} from "react";
+import {useState,createRef,ChangeEvent, useEffect,createContext} from "react";
 import reactDom from "react-dom";
 import { useFetcher } from "react-router-dom"; 
 import './App.css';
@@ -12,20 +12,19 @@ import PeaceError from './components/peace/errorPeace';
 import PeaceReload from './components/peace/PeaceReload'; 
 import { useListReaders } from "./custom/reader";
 import {fireWall} from "./custom/reader/config";
-function App() {
-  // const [inputEnable,setInputEnable]=useState<boolean>(false);
-  // const [files,setFiles]=useState([]);
- 
+import { Reader } from "./custom/reader/Reader";
+type contextType={deletePeace:()=>void};
+export const context=createContext<contextType>({} as contextType );
+function App() { 
   const filesCollection= useListReaders(fireWall);   
   const handleInput=(e: ChangeEvent<HTMLInputElement>)=>{
             filesCollection.setElement(e.target);
         }
-  useEffect(()=>{
-    // console.log("final ",filesCollection);
-    // filesCollection.loading(); 
+  useEffect(()=>{ 
   },[filesCollection.element]);
-  //   
+  
   return  <>
+ 
   <div className="d1 main-center">
       <form method="POST" encType="multipart/form-data" > 
                 <div className="area1 center"> 
@@ -35,14 +34,14 @@ function App() {
                 {/* <Progress /> */}
                 <div  className="area2 center-h">
                       {/* <div className="area21" id="area_release"> */}
-                      {   filesCollection.files.length>0   && filesCollection.files.map((x,y)=>{
-                              return   x.flag ? <Peace key={y} img={x.result} name={x.name} size={x.size} state={false} deletePeace={x.destroy}  />
+                      {   filesCollection.files.length>0   && filesCollection.files.map((x:Reader,y:number)=>{ 
+                              return   x.flag ? <context.Provider key={y} value={{deletePeace:()=>x.destroy()}}><Peace  key={y} img={x.result} name={x.name} size={x.size} state={false} /></context.Provider> 
                                 : x.isProgress ? <ProgressPeace key={y} img={x.result} fraction={x.progress} />
                                 :x.isError ?  <PeaceReload key={y} name={x.name} size={String(x.size)} /> :null; 
                             })}
 {/* <ErrorHandler/> */}  
                       {filesCollection.rejected.length>0 && filesCollection.rejected.map((x,y)=><PeaceError key={y} name={x.name} messageError={x.message}  />)}
-                      {filesCollection.element===null &&   <Welcom />}
+                      {(filesCollection.element===null) &&   <Welcom />}
                     
  
                 </div>
