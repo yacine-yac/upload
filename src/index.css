@@ -4,6 +4,7 @@
   --backgroundArea2:rgb(44, 60, 75);
   --image-background: rgba(20, 37, 47, 0.692);
   --progressArea-ground:rgba(54, 83, 109, 0.453);
+  --color-true:rgb(219, 2, 107);  /* for peace when is it succesufly uploaded*/
 }
 
 body {

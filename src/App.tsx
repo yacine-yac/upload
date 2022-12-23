@@ -28,7 +28,7 @@ function App() {
                  <PeaceReload name={'dsfsdf fcsdf'} size={'206 mbp'} />  
                  <PeaceError name="ddddd" messageError={'An error is occurs to your file'} />
                 {/* <Peace img=" " name="dsdqd" size={5}/>*/}
-                <Peace img=" " name="dsdqd" size={5}/> 
+                <Peace state={true} img=" " name="dsdqd" size={5}/> 
                 </div>
                 {/* <ButtonsArea  />  */}
       </form>  

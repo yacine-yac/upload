@@ -5,8 +5,8 @@ export default function PeaceError({name,messageError}:{name:string,messageError
      <div className="peace peace-error"> 
                 <img src={img} />
                 <div className="center-v">
-                            <h2>{messageError}</h2>
-                            <span>{name}</span> 
+                            <h2>{name}</h2>
+                            <span className="error-text">{messageError}</span> 
                 </div> 
      </div> 
     </>
