@@ -29,5 +29,8 @@ class  FileElement{
     getStatus():boolean{
         return  this.status;
     }
+    initStatus():void{
+        this.status=false;
+    }
 }
 export default FileElement;

@@ -31,6 +31,7 @@ const useListReaders:ListReaders=(fireWall)=> {
                                   {file:item,name:item.name,message:fileElement.message as string}
                             ]
                         });
+                        fileElement.initStatus();
                     }else{
                         setFilesToRead(item);
                     }
