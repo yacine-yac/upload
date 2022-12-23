@@ -1,7 +1,10 @@
-
-function DeleteElement(){
+type deleteElement= {
+    
+    setBeforeDeleteState:React.Dispatch<React.SetStateAction<boolean>>
+}
+function DeleteElement({setBeforeDeleteState}:deleteElement){
     return <>
-        <button datatype='demo' type="button">Back</button>
+        <button onClick={()=>setBeforeDeleteState(prev=>!prev)} datatype='demo' type="button">Back</button>
         <button datatype='demo' type="button">Delete</button>
     </>
 }
