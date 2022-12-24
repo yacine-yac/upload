@@ -4,7 +4,8 @@ type ListReaderReturn={
      setElement:React.Dispatch<React.SetStateAction<HTMLInputElement | null>>,
     element :HTMLInputElement | null,
     files : Reader[],
-    rejected: rejectedFile[]
+    rejected: rejectedFile[],
+    initState:()=>void
 }
 
 export type ListReadersArgs={
