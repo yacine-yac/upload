@@ -1,5 +1,5 @@
 
-function PeacElement({img,name,size,state}:{img:string,name:string,size:number,state:boolean}): JSX.Element{
+function PeacElement({img,name,size,state}:{img:string,name:string,size:string,state:boolean}): JSX.Element{
     return <>
                 <img src={img} />
                 <div className="center-v">
