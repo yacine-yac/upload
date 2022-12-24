@@ -12,6 +12,7 @@ import PeaceError from './components/peace/errorPeace';
 import PeaceReload from './components/peace/PeaceReload'; 
 import { useListReaders } from "./custom/reader";
 import {fireWall} from "./custom/reader/config";
+import { Reader } from "./custom/reader/Reader";
 function App() {
   // const [inputEnable,setInputEnable]=useState<boolean>(false);
   // const [files,setFiles]=useState([]);
@@ -35,7 +36,7 @@ function App() {
                 {/* <Progress /> */}
                 <div  className="area2 center-h">
                       {/* <div className="area21" id="area_release"> */}
-                      {   filesCollection.files.length>0   && filesCollection.files.map((x,y)=>{
+                      {   filesCollection.files.length>0   && filesCollection.files.map((x:Reader,y:number)=>{
                               return   x.flag ? <Peace key={y} img={x.result} name={x.name} size={x.size}  />
                                 : x.isProgress ? <ProgressPeace key={y} img={x.result} fraction={x.progress} />
                                 :x.isError ?  <PeaceReload key={y} name={x.name} size={String(x.size)} /> :null; 

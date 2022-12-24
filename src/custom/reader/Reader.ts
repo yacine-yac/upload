@@ -11,12 +11,12 @@ export class Reader {
     public isError:boolean=false;
     public errorMessage:string | null =null;
     public name:string;
-    public size:number;
+    public size:string;
     public selfDestroy:(name:string)=>void;
     constructor(file: File,destroy:(name:string)=>void) {
         this.reader = new FileReader();
         this.name=file.name;
-        this.size=file.size;
+        this.size=convertSize(file.size);
         this.reader.readAsDataURL(file);
         this.selfDestroy=destroy;
     } 
