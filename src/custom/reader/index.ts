@@ -48,12 +48,17 @@ const useListReaders:ListReaders=(fireWall)=> {
                     } 
               });
     },[element]);
-    
+    const initState=()=>{
+        setElement(null);
+        setFiles([]);
+        setRejected([]);
+    }
     return {
         setElement,
         element,
         files ,
-        rejected
+        rejected,
+        initState
     };
     
 }
