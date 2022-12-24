@@ -16,7 +16,7 @@ const useListReaders:ListReaders=(fireWall)=> {
     const destroyFileReader=useCallback((name:string)=>{ 
             setFiles(prev=>{
                 prev.forEach((x,y)=>{ x.name===name && (prev.splice(y,1))});
-                if(prev.length===0){setElement(null);setRejected([]);}
+                if(prev.length===0){initState();}
                 return [...prev];
             });  
     },[files]);  
