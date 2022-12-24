@@ -31,7 +31,7 @@ function App() {
       <form method="POST" encType="multipart/form-data" > 
                 <div className="area1 center"> 
                     <h1>Uploading System</h1> 
-                    <label><input disabled={inputState} value={filesCollection.element?.value ?? ""}   onChange={handleInput} type="file" name="uploading[]" id="upload" multiple /></label>
+                    <label><input disabled={inputState} value={filesCollection.value}   onChange={handleInput} type="file" name="uploading[]" id="upload" multiple /></label>
                 </div>
                 {/* <Progress /> */}
                 <div  className="area2 center-h">
