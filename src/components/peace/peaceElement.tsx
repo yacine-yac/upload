@@ -1,12 +1,13 @@
 type peaceElement={ 
     img:string,
     name:string,
-    size:number,
+    size:string,
     state:boolean,
     setBeforeDeleteState:React.Dispatch<React.SetStateAction<boolean>>
 }
-
+ 
 function PeacElement({img,name,size,state,setBeforeDeleteState}:peaceElement): JSX.Element{
+ 
     return <>
                 <img src={img} />
                 <div className="center-v">
