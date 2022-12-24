@@ -45,7 +45,7 @@ function App() {
                     
  
                 </div>
-                {/* <ButtonsArea  />  */}
+              {filesCollection.files.length>0 &&  <ButtonsArea clearAllFiles={filesCollection.initState}   /> }
       </form>  
   </div> 
   
