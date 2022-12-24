@@ -16,7 +16,8 @@ import { Reader } from "./custom/reader/Reader";
 type contextType={deletePeace:()=>void};
 export const context=createContext<contextType>({} as contextType );
 function App() { 
-  const filesCollection= useListReaders(fireWall);   
+  const filesCollection= useListReaders(fireWall);
+  const inputState=Boolean(filesCollection.files.length) ;   
   const handleInput=(e: ChangeEvent<HTMLInputElement>)=>{
             filesCollection.setElement(e.target);
         }
@@ -29,7 +30,7 @@ function App() {
       <form method="POST" encType="multipart/form-data" > 
                 <div className="area1 center"> 
                     <h1>Uploading System</h1> 
-                    <label><input disabled={Boolean(filesCollection.files.length)}  onChange={handleInput} type="file" name="uploading[]" id="upload" multiple /></label>
+                    <label><input disabled={inputState} value={filesCollection.element?.value ?? ""}   onChange={handleInput} type="file" name="uploading[]" id="upload" multiple /></label>
                 </div>
                 {/* <Progress /> */}
                 <div  className="area2 center-h">

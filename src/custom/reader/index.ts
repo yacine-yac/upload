@@ -33,7 +33,6 @@ const useListReaders:ListReaders=(fireWall)=> {
 /* eslint-disable */
     useEffect(()=>{
             element!==null &&  Object.values(element?.files ?? {}).forEach((item:File) => {
-                    console.log(item.type);
                     fireWall && (fileElement.checkSize(item),fileElement.checkType(item));
                     if(fileElement.getStatus()){
                         setRejected(prev=>{
