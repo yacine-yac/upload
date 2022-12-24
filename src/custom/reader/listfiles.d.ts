@@ -1,11 +1,11 @@
-import { type } from "os";
 
 type ListReaderReturn={
      setElement:React.Dispatch<React.SetStateAction<HTMLInputElement | null>>,
     element :HTMLInputElement | null,
     files : Reader[],
     rejected: rejectedFile[],
-    initState:()=>void
+    initState:()=>void,
+    value:string
 }
 
 export type ListReadersArgs={

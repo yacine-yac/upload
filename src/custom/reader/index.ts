@@ -8,6 +8,7 @@ const useListReaders:ListReaders=(fireWall)=> {
     const [files,setFiles]=useState<Reader[]>([]); 
     const [rejected,setRejected]=useState<rejectedFile[]>([]);
     const fileElement=useMemo(()=>{ return new FileElement(fireWall)},[]);
+    const value=element?.value ?? "";
     /**
      * it allows to destroy Reader object from files state which dispared on the view
      * this method we will be passed to  every Reader object, and this one will implement it 
@@ -57,7 +58,8 @@ const useListReaders:ListReaders=(fireWall)=> {
         element,
         files ,
         rejected,
-        initState
+        initState,
+        value
     };
     
 }
