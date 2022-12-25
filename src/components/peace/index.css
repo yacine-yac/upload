@@ -11,7 +11,7 @@
     transition: 0.3s ease-in;
     box-shadow: 1px 1px 7px 1px rgb(62, 87, 97);
 } 
-.area2 .peace  img{ 
+.area2 .peace  img,.area2 .peace video{ 
     height: 34px;width: 34px;
     background-color: var(--image-background);
     margin: 17px 10px ;margin-right: 0px;
