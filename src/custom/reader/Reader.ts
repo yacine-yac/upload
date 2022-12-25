@@ -9,14 +9,16 @@ export class Reader {
     public progress:number=0;
     public isProgress:boolean=false;
     public isError:boolean=false;
-    public errorMessage:string | null =null;
+    public errorMessage:string | null =null; 
     public name:string;
     public size:string;
+    public type:string;
     public selfDestroy:(name:string)=>void;
     constructor(file: File,destroy:(name:string)=>void) {
         this.reader = new FileReader();
         this.name=file.name;
         this.size=convertSize(file.size);
+        this.type=file.type; 
         this.reader.readAsDataURL(file);
         this.selfDestroy=destroy;
     } 
@@ -59,5 +61,5 @@ export class Reader {
     }
     destroy(){ 
         this.selfDestroy(this.name);
-    }
+    } 
 }
