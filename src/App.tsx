@@ -34,7 +34,7 @@ function App() {
                     <label><input disabled={inputState} value={filesCollection.value}   onChange={handleInput} type="file" name="uploading[]" id="upload" multiple /></label>
                 </div>
                 {/* <Progress /> */}
-                <div  className="area2 center-h">
+                <div  className="area2">
                       {/* <div className="area21" id="area_release"> */} 
                       {   filesCollection.files.length>0   && filesCollection.files.map((x:Reader,y:number)=>{ 
                               return   x.flag ? <context.Provider key={y} value={{deletePeace:()=>x.destroy()}}><Peace  key={y} img={x.result} name={x.name} size={x.size} state={false} /></context.Provider> 
