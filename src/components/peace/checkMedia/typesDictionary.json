@@ -1,0 +1,4 @@
+{
+    "img": [ "image/jpeg","image/jpg","image/png"],
+    "video":["video/mp4","video/3gpp","video/avi" ]
+}
