@@ -13,7 +13,7 @@ export type uploadHook=(
     dispatch:()=>void
     isError:boolean,
     isProgress:boolean,
-    Progress:number,
+    progress:number,
     total:number,
     loaded:number,
     success:boolean
