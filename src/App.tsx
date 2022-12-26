@@ -13,12 +13,15 @@ import PeaceReload from './components/peace/PeaceReload';
 import { useListReaders } from "./custom/reader";
 import {fireWall} from "./custom/reader/config";
 import { Reader } from "./custom/reader/Reader"; 
+import useUpload from "./custom/upload";
+import config from "./config.json";
 
 type contextType={deletePeace:()=>void};
 export const context=createContext<contextType>({} as contextType ); 
 function App() { 
   const filesCollection= useListReaders(fireWall);
-  const inputState=Boolean(filesCollection.files.length) ;   
+  const inputState=Boolean(filesCollection.files.length); 
+  const upload=useUpload(config.server,{enabled:true});  
   const handleInput=(e: ChangeEvent<HTMLInputElement>)=>{
             filesCollection.setElement(e.target);
         }
@@ -46,7 +49,7 @@ function App() {
                       {(filesCollection.element===null) &&   <Welcom />}
          
                 </div>
-              {filesCollection.files.length>0 &&  <ButtonsArea clearAllFiles={filesCollection.initState}   /> }
+              {filesCollection.files.length>0 &&  <ButtonsArea clearAllFiles={filesCollection.initState} sendFiles={upload.dispatch}  /> }
       </form>  
   </div> 
   
