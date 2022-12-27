@@ -5,7 +5,8 @@ type ListReaderReturn={
     files : Reader[],
     rejected: rejectedFile[],
     initState:()=>void,
-    value:string
+    value:string,
+    items: FileList
 }
 
 export type ListReadersArgs={

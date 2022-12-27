@@ -8,6 +8,7 @@ const useListReaders:ListReaders=(fireWall)=> {
     const [files,setFiles]=useState<Reader[]>([]); 
     const [rejected,setRejected]=useState<rejectedFile[]>([]);
     const fileElement=useMemo(()=>{ return new FileElement(fireWall)},[]);
+    const dataTransfer=useMemo(()=>new DataTransfer(),[]);
     const value=element?.value ?? "";
     /**
      * it allows to destroy Reader object from files state which dispared on the view
@@ -16,7 +17,7 @@ const useListReaders:ListReaders=(fireWall)=> {
      */
     const destroyFileReader=useCallback((name:string)=>{ 
             setFiles(prev=>{
-                prev.forEach((x,y)=>{ x.name===name && (prev.splice(y,1))});
+                prev.forEach((x,y)=>{ if(x.name===name){ prev.splice(y,1);dataTransfer.items.remove(y)}});
                 if(prev.length===0){initState();}
                 return [...prev];
             });  
@@ -28,7 +29,8 @@ const useListReaders:ListReaders=(fireWall)=> {
         Reading.getResult();  
         Reading.checkError();
         Reading.endRead(); 
-        Reading.checkError();   
+        Reading.checkError(); 
+        dataTransfer.items.add(file);  
         setFiles(prev=>{return [...prev,Reading]});  
     }   
 /* eslint-disable */
@@ -52,6 +54,7 @@ const useListReaders:ListReaders=(fireWall)=> {
         setElement(null);
         setFiles([]);
         setRejected([]);
+        dataTransfer.clearData();
     }
     return {
         setElement,
@@ -59,7 +62,8 @@ const useListReaders:ListReaders=(fireWall)=> {
         files ,
         rejected,
         initState,
-        value
+        value,
+        items:dataTransfer.files
     };
     
 }
