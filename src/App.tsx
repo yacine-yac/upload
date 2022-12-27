@@ -21,13 +21,13 @@ export const context=createContext<contextType>({} as contextType );
 function App() { 
   const filesCollection= useListReaders(fireWall);
   const inputState=Boolean(filesCollection.files.length); 
-  const upload=useUpload(config.server,{enabled:true});  
+  const upload=useUpload(config.server,{data:filesCollection.files,enabled:true}); 
+  
   const handleInput=(e: ChangeEvent<HTMLInputElement>)=>{
             filesCollection.setElement(e.target);
         }
   useEffect(()=>{ 
-  },[filesCollection.element]);
-  
+  },[filesCollection.element]); 
   return  <>
  
   <div className="d1 main-center">
