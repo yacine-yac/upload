@@ -21,8 +21,8 @@ export const context=createContext<contextType>({} as contextType );
 function App() { 
   const filesCollection= useListReaders(fireWall);
   const inputState=Boolean(filesCollection.files.length); 
-  const upload=useUpload(config.server,{data:filesCollection.files,enabled:true}); 
-  
+  const upload=useUpload(config.server,{enabled:true}); 
+  console.log(upload);
   const handleInput=(e: ChangeEvent<HTMLInputElement>)=>{
             filesCollection.setElement(e.target);
         }
@@ -31,7 +31,7 @@ function App() {
   return  <>
  
   <div className="d1 main-center">
-      <form method="POST" encType="multipart/form-data" > 
+      <form method="POST" id="form" encType="multipart/form-data" > 
                 <div className="area1 center"> 
                     <h1>Uploading System</h1> 
                     <label><input disabled={inputState} value={filesCollection.value}   onChange={handleInput} type="file" name="uploading[]" id="upload" multiple /></label>
