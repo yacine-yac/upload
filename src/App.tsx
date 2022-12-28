@@ -15,6 +15,7 @@ import {fireWall} from "./custom/reader/config";
 import { Reader } from "./custom/reader/Reader"; 
 import useUpload from "./custom/upload";
 import config from "./config.json";
+import { updateImportClause } from "typescript";
 
 type contextType={deletePeace:()=>void};
 export const context=createContext<contextType>({} as contextType ); 
@@ -28,8 +29,8 @@ function App() {
         }
   useEffect(()=>{ 
   },[filesCollection.element]); 
-  const send=useCallback(()=>{console.log(filesCollection.items);
-    upload.setCredintials(prev=>{return {...prev,data:filesCollection.items}});
+  const send=useCallback(()=>{ 
+    upload.setData(filesCollection.items);
     upload.dispatch();
   },[filesCollection.items]);
   return  <>
@@ -40,7 +41,7 @@ function App() {
                     <h1>Uploading System</h1> 
                     <label><input disabled={inputState} value={filesCollection.value}   onChange={handleInput} type="file" name="uploading[]" id="upload" multiple /></label>
                 </div>
-                {/* <Progress /> */}
+               {upload.isProgress && <Progress />}
                 <div  className="area2">
                       {/* <div className="area21" id="area_release"> */} 
                       {   filesCollection.files.length>0   && filesCollection.files.map((x:Reader,y:number)=>{ 
@@ -48,7 +49,7 @@ function App() {
                                               : x.isProgress ? <ProgressPeace key={y} img={x.result} fraction={x.progress} />
                                               :x.isError ?  <PeaceReload key={y} name={x.name} size={String(x.size)} /> :null; 
                             })}
-{/* <ErrorHandler/> */}  
+                      { upload.isError  && <ErrorHandler/>  }  
                       {filesCollection.rejected.length>0 && filesCollection.rejected.map((x,y)=><PeaceError key={y} name={x.name} messageError={x.message}  />)}
                       {(filesCollection.element===null) &&   <Welcom />}
          
