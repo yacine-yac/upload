@@ -1,4 +1,4 @@
-import {useState,createRef,ChangeEvent, useEffect,createContext} from "react";
+import {useState,useCallback,createRef,ChangeEvent, useEffect,createContext} from "react";
 import reactDom from "react-dom";
 import { useFetcher } from "react-router-dom"; 
 import './App.css';
@@ -28,6 +28,10 @@ function App() {
         }
   useEffect(()=>{ 
   },[filesCollection.element]); 
+  const send=useCallback(()=>{console.log(filesCollection.items);
+    upload.setCredintials(prev=>{return {...prev,data:filesCollection.items}});
+    upload.dispatch();
+  },[filesCollection.items]);
   return  <>
  
   <div className="d1 main-center">
@@ -49,7 +53,7 @@ function App() {
                       {(filesCollection.element===null) &&   <Welcom />}
          
                 </div>
-              {filesCollection.files.length>0 &&  <ButtonsArea clearAllFiles={filesCollection.initState} sendFiles={upload.dispatch}  /> }
+              {filesCollection.files.length>0 &&  <ButtonsArea clearAllFiles={filesCollection.initState} sendFiles={send}  /> }
       </form>  
   </div> 
   
