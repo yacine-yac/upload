@@ -1,32 +1,26 @@
 import { uploadHook } from "./typeUpload";
-import {useState} from "react";
+import {useState,useMemo} from "react";
 import {initState,state} from "./initState"; 
+import FormUpload from "./form"; 
 
-   
+/**
+ * it allows to upload a set of files 
+ * @param {string} url link to upload files 
+ * @param {{data:FileList | undefined,enabled:boolean}} params data is files to upload and enabled it controle upload dispatch
+ * @returns 
+ */
 const   useUpload:uploadHook=function(url,params={data:{} as FileList,enabled:false}){
-    const [{url:urlState,data,enabled},setCredintials]=useState({url,...params});
-    const [state,setState]=useState<state>(initState);
-    const formdata=new FormData();
-    const formReady:boolean=formdata.getAll('uploading[]').length >0;
-    const proccessFormdata=()=>{
-      if(data?.length as number >0){
-                for(let i in data){console.log(data,"zzz");
-                    formdata.append('uploading[]',data.item(+i) as File);
-                } 
-                console.log("fff",formdata.getAll("uploading[]"));
-      }else{
-         setState({...state,isError:true,errorMessage:"There is no file to upload!"})
-      }
-   
-    }
-
-    const callServer=()=>{ 
-            const xhr=new XMLHttpRequest(); 
-            xhr.open("POST",urlState);
-            xhr.addEventListener("loadstart",(e)=>{ 
+    const [state,setState]=useState<state>(initState); 
+    const uploadForm=useMemo(()=>new FormUpload(url,params.data),[]); 
+    
+    /**
+     * It allows to handle all events related to upload (loadstart,loadend,progress,error)
+     */
+    const dispatchEvents=()=>{  
+            uploadForm.xhr.addEventListener("loadstart",(e)=>{ 
                         setState({...state,isProgress:true});
             });
-            xhr.upload.addEventListener('progress',(e)=>{
+            uploadForm.xhr.upload.addEventListener('progress',(e)=>{
                         setState({  
                             ...state,
                             progress: Math.round(e.loaded/e.total)*100,
@@ -34,23 +28,35 @@ const   useUpload:uploadHook=function(url,params={data:{} as FileList,enabled:fa
                             total:e.total
                         });
             });
-            xhr.addEventListener('error',(e)=>{console.log('fhfhfhdhx')
+            uploadForm.xhr.addEventListener('error',(e)=>{console.log('fhfhfhdhx')
                         setState({...state,isError:true});
             });
-            xhr.addEventListener("loadend",(e)=>{console.log(e);
+            uploadForm.xhr.addEventListener("loadend",(e)=>{//console.log(e);
                         setState({
                             ...state,
                             isProgress:false,
                             success:true
                         });
-            });
-            xhr.send(formdata);
-    }
+            }); 
+    } 
+    
      /* eslint-disable */
-    enabled ===false && (proccessFormdata(),formReady && callServer());
-    const dispatch=()=> (proccessFormdata(),formReady && callServer());
-    return {
-        setCredintials,
+     /**
+      * It allows to upload files when they are ready, and dispatch all events related to upload 
+      */
+    const dispatch=()=>{ 
+        if(uploadForm.files?.length as number>0 ){
+             uploadForm.send();
+            //  dispatchEvents();
+        }else{ 
+             setState({...state,isError:true,errorMessage:"There is no file to upload!"});
+        }
+    }
+    // that means files will upload when the hook useUpload is init 
+    params.enabled ===false && dispatch();
+   
+    return { 
+        setData:(files)=>uploadForm.setData(files),
         dispatch,
         ...state
     }

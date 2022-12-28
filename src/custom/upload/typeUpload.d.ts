@@ -5,12 +5,8 @@ export type uploadHook=(
         data?:FileList ,
         enabled?:boolean
     }
-)=>{
-    setCredintials: React.Dispatch<React.SetStateAction<{
-        data?: FileList;
-        enabled?: boolean;
-        url: string;
-    }>>,
+)=>{ 
+    setData:(data: FileList) => FormUpload,
     dispatch:()=>void
     isError:boolean,
     isProgress:boolean,
