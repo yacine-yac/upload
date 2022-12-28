@@ -4,7 +4,8 @@ export type state={
     progress:number,
     total:number,
     loaded:number,
-    success:boolean
+    success:boolean,
+    errorMessage:string | null
 }
 export  const initState:state={
     isError:false,
@@ -12,5 +13,6 @@ export  const initState:state={
     progress:0,
     total:0,
     loaded:0,
-    success:false
+    success:false,
+    errorMessage:null
 };

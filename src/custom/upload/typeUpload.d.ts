@@ -2,13 +2,13 @@
 export type uploadHook=(
     url:string,
     params?:{
-        data?:Reader[] | null,
+        data?:FileList ,
         enabled?:boolean
     }
 )=>{
     setCredintials: React.Dispatch<React.SetStateAction<{
-        data?: Reader[] | null | undefined;
-        enabled?: boolean | undefined;
+        data?: FileList;
+        enabled?: boolean;
         url: string;
     }>>,
     dispatch:()=>void
