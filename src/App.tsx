@@ -14,8 +14,7 @@ import { useListReaders } from "./custom/reader";
 import {fireWall} from "./custom/reader/config";
 import { Reader } from "./custom/reader/Reader"; 
 import useUpload from "./custom/upload";
-import config from "./config.json";
-import { updateImportClause } from "typescript";
+import config from "./config.json"; 
 
 type contextType={deletePeace:()=>void};
 export const context=createContext<contextType>({} as contextType ); 
@@ -41,7 +40,7 @@ function App() {
                     <h1>Uploading System</h1> 
                     <label><input disabled={inputState} value={filesCollection.value}   onChange={handleInput} type="file" name="uploading[]" id="upload" multiple /></label>
                 </div>
-               {upload.isProgress && <Progress />}
+               {upload.isProgress && <Progress fraction={upload.progress+"%"} />}
                 <div  className="area2">
                       {/* <div className="area21" id="area_release"> */} 
                       {   filesCollection.files.length>0   && filesCollection.files.map((x:Reader,y:number)=>{ 
@@ -49,7 +48,7 @@ function App() {
                                               : x.isProgress ? <ProgressPeace key={y} img={x.result} fraction={x.progress} />
                                               :x.isError ?  <PeaceReload key={y} name={x.name} size={String(x.size)} /> :null; 
                             })}
-                      { upload.isError  && <ErrorHandler/>  }  
+                      { upload.isError  && <ErrorHandler messageError={upload.errorMessage ?? undefined}  status={100}/>  }  
                       {filesCollection.rejected.length>0 && filesCollection.rejected.map((x,y)=><PeaceError key={y} name={x.name} messageError={x.message}  />)}
                       {(filesCollection.element===null) &&   <Welcom />}
          
