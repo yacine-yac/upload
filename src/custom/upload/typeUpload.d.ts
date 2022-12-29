@@ -1,4 +1,4 @@
-
+import {state} from "./initState"
 export type uploadHook=(
     url:string,
     params?:{
@@ -7,11 +7,12 @@ export type uploadHook=(
     }
 )=>{ 
     setData:(data: FileList) => FormUpload,
-    dispatch:()=>void
+    dispatch:()=>void,
     isError:boolean,
     isProgress:boolean,
     progress:number,
     total:number,
     loaded:number,
-    success:boolean
+    success:boolean,
+    errorMessage:string | null
 }

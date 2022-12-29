@@ -9,7 +9,7 @@ import FormUpload from "./form";
  * @param {{data:FileList | undefined,enabled:boolean}} params data is files to upload and enabled it controle upload dispatch
  * @returns 
  */
-const   useUpload:uploadHook=function(url,params={data:{} as FileList,enabled:false}){
+const   useUpload:uploadHook= function(url,params={data:{} as FileList,enabled:false}){
     const [state,setState]=useState<state>(initState); 
     const uploadForm=useMemo(()=>new FormUpload(url,params.data),[]); 
     
@@ -47,7 +47,7 @@ const   useUpload:uploadHook=function(url,params={data:{} as FileList,enabled:fa
     const dispatch=()=>{ 
         if(uploadForm.files?.length as number>0 ){
              uploadForm.send();
-            //  dispatchEvents();
+             dispatchEvents();
         }else{ 
              setState({...state,isError:true,errorMessage:"There is no file to upload!"});
         }
