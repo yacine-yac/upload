@@ -1,7 +1,7 @@
 import { uploadHook } from "./typeUpload";
 import {useState,useMemo} from "react";
 import {initState,state} from "./initState"; 
-import FormUpload from "./form"; 
+import FormUpload from "./form";  
 
 /**
  * it allows to upload a set of files 
@@ -16,27 +16,39 @@ const   useUpload:uploadHook= function(url,params={data:{} as FileList,enabled:f
     /**
      * It allows to handle all events related to upload (loadstart,loadend,progress,error)
      */
-    const dispatchEvents=()=>{  
-            uploadForm.xhr.addEventListener("loadstart",(e)=>{ 
+    const dispatchEvents=()=>{
+            uploadForm.xhr.upload.addEventListener("loadstart",(e)=>{ 
                         setState({...state,isProgress:true});
             });
-            uploadForm.xhr.upload.addEventListener('progress',(e)=>{
+            uploadForm.xhr.addEventListener("progress",(e)=>{
+                console.log('event ')
                         setState({  
                             ...state,
+                            isProgress:true,
                             progress: Math.round(e.loaded/e.total)*100,
                             loaded:e.loaded,
                             total:e.total
                         });
             });
-            uploadForm.xhr.addEventListener('error',(e)=>{console.log('fhfhfhdhx')
-                        setState({...state,isError:true});
-            });
-            uploadForm.xhr.addEventListener("loadend",(e)=>{//console.log(e);
+            uploadForm.xhr.addEventListener('error',(e)=>{console.log('fhfhfhdhx',uploadForm.xhr);
                         setState({
+                            ...state,
+                            isError:true,
+                            errorMessage:"Something was wrong!",
+                            isProgress:false,
+                            loaded:0,
+                            total:0
+                        });
+            });
+            uploadForm.xhr.addEventListener("loadend",(e)=>{ console.log('end')
+                console.log(state,uploadForm.xhr);
+                uploadForm.xhr.status===200 
+                    ? setState({
                             ...state,
                             isProgress:false,
                             success:true
-                        });
+                        })
+                    : uploadForm.xhr.dispatchEvent(new Event("error"));
             }); 
     } 
     
