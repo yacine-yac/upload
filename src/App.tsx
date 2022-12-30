@@ -39,7 +39,7 @@ function App() {
                 <div className="area1 center"> 
                     <h1>Uploading System</h1> 
                     <label><input disabled={inputState} value={filesCollection.value}   onChange={handleInput} type="file" name="uploading[]" id="upload" multiple /></label>
-                </div>
+                </div> 
                {upload.isProgress && <Progress fraction={upload.progress+"%"} />}
                 <div  className="area2">
                       {/* <div className="area21" id="area_release"> */} 
@@ -54,6 +54,7 @@ function App() {
          
                 </div>
               {filesCollection.files.length>0 &&  <ButtonsArea clearAllFiles={filesCollection.initState} sendFiles={send}  /> }
+ 
       </form>  
   </div> 
   
