@@ -1,11 +1,14 @@
-import {state} from "./initState"
-export type uploadHook=(
+import { ListReaderReturn, ListReaders } from "../reader/listfiles"
+import {state} from "./initState";
+
+export type uploadParams={
     url:string,
     params?:{
-        data?:FileList ,
-        enabled?:boolean
-    }
-)=>{ 
+               data ?:FileList,
+               enabled?:boolean
+             }
+} 
+export type uploadreturn={
     setData:(data: FileList) => FormUpload,
     dispatch:()=>void,
     initState:()=>void,
@@ -17,3 +20,11 @@ export type uploadHook=(
     success:boolean,
     errorMessage:string | null
 }
+ 
+export type uploadHook=(
+    url:string,
+    params?:{
+        data?:FileList ,
+        enabled?:boolean
+    } 
+)=>uploadreturn

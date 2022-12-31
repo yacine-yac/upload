@@ -1,3 +1,4 @@
+import { uploadHook } from "../upload/typeUpload";
 
 type ListReaderReturn={
      setElement:React.Dispatch<React.SetStateAction<HTMLInputElement | null>>,
@@ -6,7 +7,7 @@ type ListReaderReturn={
     rejected: rejectedFile[],
     initState:()=>void,
     value:string,
-    items: FileList
+    items: FileList 
 }
 
 export type ListReadersArgs={

@@ -68,16 +68,17 @@ const   useUpload:uploadHook= function(url,params={data:{} as FileList,enabled:f
      * It allows to return useUpload to his initial state for to be ready to a new upload 
      */
     const initState=()=>{
-           setState(initialState);
+           setState(initialState); 
     }
     // that means files will upload when the hook useUpload is init 
     params.enabled ===false && dispatch();
     
     return { 
-        setData:(files)=>uploadForm.setData(files),
-        dispatch,
-        initState,
-        ...state
+                setData:(files)=>uploadForm.setData(files),
+                dispatch,
+                initState,
+                ...state
+      
     }
 }
 export default useUpload;

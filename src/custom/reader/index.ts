@@ -1,12 +1,13 @@
 import {useState,useEffect,useMemo,useCallback} from 'react'; 
 import { Reader } from './Reader';
 import   {ListReaders, rejectedFile} from "./listfiles"; 
-import FileElement from './fileelement'; 
+import FileElement from './fileelement';  
+import useUpload from '../upload';
 
 const useListReaders:ListReaders=(fireWall)=> { 
     const [element,setElement]=useState<null | HTMLInputElement>(null);
     const [files,setFiles]=useState<Reader[]>([]); 
-    const [rejected,setRejected]=useState<rejectedFile[]>([]);
+    const [rejected,setRejected]=useState<rejectedFile[]>([]); 
     const fileElement=useMemo(()=>{ return new FileElement(fireWall)},[]);
     const dataTransfer=useMemo(()=>new DataTransfer(),[]);
     const value=element?.value ?? "";
@@ -55,7 +56,7 @@ const useListReaders:ListReaders=(fireWall)=> {
         setFiles([]);
         setRejected([]);
         dataTransfer.clearData();
-    }
+    } 
     return {
         setElement,
         element,
