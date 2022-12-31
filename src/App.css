@@ -42,7 +42,7 @@ form{width: 100%;height:100%;}
     background-color: var(--backgroundArea2); 
     /* margin: 0px;  */
 }
-.area2:has(.peace){
+.area2 + .peace{ border: 1px solid red;
     height: 55%;
     flex-direction: column;
 }

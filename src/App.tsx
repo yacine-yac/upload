@@ -52,24 +52,10 @@ function App() {
                       {filesCollection.rejected.length>0 && filesCollection.rejected.map((x,y)=><PeaceError key={y} name={x.name} messageError={x.message}  />)}
                       {(filesCollection.element===null) &&   <Welcom />}
          
-                </div>
-<<<<<<< HEAD
-              {(filesCollection.files.length>0 && !upload.isError)  &&  <ButtonsArea clearAllFiles={filesCollection.initState} sendFiles={send}  /> }
+                </div> 
+                {(filesCollection.files.length>0 && !upload.isError)  &&  <ButtonsArea clearAllFiles={filesCollection.initState} sendFiles={send}  /> }
  
-=======
-                {/* <Progress /> */} 
-                <div className="area2">
-                      {/* <div className="area21" id="area_release"> */}
-                            {/* <Welcom />  */}
-<ErrorHandler/>
-                 {/* <ProgressPeace img=" "  fraction={65}  />   */}
-                 {/* <PeaceReload name={'dsfsdf fcsdf'} size={'206 mbp'} />  
-                 <PeaceError name="ddddd" messageError={'An error is occurs to your file'} /> */}
-                {/* <Peace img=" " name="dsdqd" size={5}/>*/}
-                {/* <Peace state={true} img=" " name="dsdqd" size={"5.6 ko"}/>  */}
-                </div>
-                {/* <ButtonsArea  />  */}
->>>>>>> design
+
       </form>  
   </div> 
   

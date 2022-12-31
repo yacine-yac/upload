@@ -5,8 +5,10 @@ function ErrorHandler({status,messageError="Error occured to upload Request"}:{s
           <div className="error main-center center">
              <img src={error} alt="Error"></img> 
              <h2>{status}!, {messageError}</h2>
-             <button type='button'></button>
-             <button type='button'></button> 
+             <section className='center-h'>
+                <button type='button'></button>
+                <button type='button'></button> 
+             </section>
           </div>
     </>
 }
