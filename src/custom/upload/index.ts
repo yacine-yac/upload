@@ -1,6 +1,6 @@
 import { uploadHook } from "./typeUpload";
 import {useState,useMemo} from "react";
-import {initState,state} from "./initState"; 
+import {initialState,state} from "./initState"; 
 import FormUpload from "./form";  
 
 /**
@@ -10,7 +10,7 @@ import FormUpload from "./form";
  * @returns 
  */
 const   useUpload:uploadHook= function(url,params={data:{} as FileList,enabled:false}){
-    const [state,setState]=useState<state>(initState); 
+    const [state,setState]=useState<state>(initialState); 
     const uploadForm=useMemo(()=>new FormUpload(url,params.data),[]); 
     
     /**
@@ -64,12 +64,19 @@ const   useUpload:uploadHook= function(url,params={data:{} as FileList,enabled:f
              setState({...state,isError:true,errorMessage:"There is no file to upload!"});
         }
     }
+    /**
+     * It allows to return useUpload to his initial state for to be ready to a new upload 
+     */
+    const initState=()=>{
+           setState(initialState);
+    }
     // that means files will upload when the hook useUpload is init 
     params.enabled ===false && dispatch();
-   
+    
     return { 
         setData:(files)=>uploadForm.setData(files),
         dispatch,
+        initState,
         ...state
     }
 }

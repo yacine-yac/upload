@@ -7,7 +7,7 @@ export type state={
     success:boolean,
     errorMessage:string | null
 }
-export  const initState:state={
+export  const initialState:state={
     isError:false,
     isProgress:false,
     progress:0,

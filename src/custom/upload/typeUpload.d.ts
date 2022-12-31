@@ -8,6 +8,7 @@ export type uploadHook=(
 )=>{ 
     setData:(data: FileList) => FormUpload,
     dispatch:()=>void,
+    initState:()=>void,
     isError:boolean,
     isProgress:boolean,
     progress:number,
