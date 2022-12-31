@@ -23,12 +23,12 @@ function App() {
                 <div className="area2">
                       {/* <div className="area21" id="area_release"> */}
                             {/* <Welcom />  */}
-{/* <ErrorHandler/> */}
+<ErrorHandler/>
                  {/* <ProgressPeace img=" "  fraction={65}  />   */}
-                 <PeaceReload name={'dsfsdf fcsdf'} size={'206 mbp'} />  
-                 <PeaceError name="ddddd" messageError={'An error is occurs to your file'} />
+                 {/* <PeaceReload name={'dsfsdf fcsdf'} size={'206 mbp'} />  
+                 <PeaceError name="ddddd" messageError={'An error is occurs to your file'} /> */}
                 {/* <Peace img=" " name="dsdqd" size={5}/>*/}
-                <Peace state={true} img=" " name="dsdqd" size={"5.6 ko"}/> 
+                {/* <Peace state={true} img=" " name="dsdqd" size={"5.6 ko"}/>  */}
                 </div>
                 {/* <ButtonsArea  />  */}
       </form>  
