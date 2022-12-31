@@ -15,13 +15,16 @@ import {fireWall} from "./custom/reader/config";
 import { Reader } from "./custom/reader/Reader"; 
 import useUpload from "./custom/upload";
 import config from "./config.json"; 
+import useUploader from "./custom";
 
 type contextType={deletePeace:()=>void};
 export const context=createContext<contextType>({} as contextType ); 
 function App() { 
-  const filesCollection= useListReaders(fireWall);
-  const inputState=Boolean(filesCollection.files.length); 
+  // const filesCollection= useListReaders(fireWall);
+  
   const upload=useUpload(config.server,{enabled:true}); 
+  const {ListReader:filesCollection}=useUploader(fireWall);
+  const inputState=Boolean(filesCollection.files.length); 
   console.log(upload);
   const handleInput=(e: ChangeEvent<HTMLInputElement>)=>{
             filesCollection.setElement(e.target);
