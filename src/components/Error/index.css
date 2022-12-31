@@ -1,9 +1,19 @@
 .error{width: 90%;height: 80%;
+    flex-direction: column;
     background-color: var(--image-background);
-flex-direction: column;}
-.error img{width: 75%;height: 70%;}
+}
+.error img{width: 75%;height: 70%;} 
 .error h2{
     margin-top: 0;text-align: center;
     font-size: x-large;font-family: fantasy;font-weight: 300;
     color: red;
+}
+.error button{
+    width: 35%;height: 40px; 
+}
+.error button:nth-child(3){
+    background-image: url('../../icons/refresh.png');
+}
+.error button:nth-child(4){
+    background-image: url('../../icons/trash.png');
 }
