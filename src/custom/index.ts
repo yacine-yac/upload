@@ -3,7 +3,7 @@ import { useListReaders } from "./reader";
 import {uploader} from "./uploader";
 import {useState} from "react";
 import { uploadreturn } from "./upload/typeUpload";
-const Uploader:uploader=(fireWall)=>{
+const useUploader:uploader=(fireWall)=>{
     const List=useListReaders(fireWall); 
     const [upload,setUpload]=useState<null | uploadreturn>(null)
  
@@ -14,4 +14,4 @@ const Uploader:uploader=(fireWall)=>{
     }
 }
 
-export default Uploader;
+export default useUploader;
