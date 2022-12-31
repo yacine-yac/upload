@@ -1,16 +1,18 @@
 import useUpload from "./upload";
 import { useListReaders } from "./reader";
-import {uploader} from "./uploader";
-import {useState} from "react";
-import { uploadreturn } from "./upload/typeUpload";
-const useUploader:uploader=(fireWall)=>{
+import {uploader} from "./uploader"; 
+
+const useUploader:uploader=(url,fireWall,params)=>{
     const List=useListReaders(fireWall); 
-    const [upload,setUpload]=useState<null | uploadreturn>(null)
- 
+    const uploading=useUpload(url,params); 
+    const clear=()=>{
+        List.initState();
+        uploading.initState();
+    }
     return {
         ListReader:List,
-        setUpload:(url:string,params)=>setUpload(useUpload(url,params)),
-        upload
+        clear, 
+        upload:uploading
     }
 }
 

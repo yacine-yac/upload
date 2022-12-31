@@ -1,6 +1,4 @@
-import {useState,useCallback,createRef,ChangeEvent, useEffect,createContext} from "react";
-import reactDom from "react-dom";
-import { useFetcher } from "react-router-dom"; 
+import {useCallback,ChangeEvent, useEffect,createContext} from "react"; 
 import './App.css';
 import ButtonsArea from './components/ButtonsArea';
 import ErrorHandler from './components/Error';
@@ -9,21 +7,16 @@ import Progress from './components/progress';
 import Welcom from './components/welcom'; 
 import ProgressPeace from './components/peace/progressPeace';
 import PeaceError from './components/peace/errorPeace';
-import PeaceReload from './components/peace/PeaceReload'; 
-import { useListReaders } from "./custom/reader";
+import PeaceReload from './components/peace/PeaceReload';  
 import {fireWall} from "./custom/reader/config";
-import { Reader } from "./custom/reader/Reader"; 
-import useUpload from "./custom/upload";
+import { Reader } from "./custom/reader/Reader";  
 import config from "./config.json"; 
 import useUploader from "./custom";
 
 type contextType={deletePeace:()=>void};
 export const context=createContext<contextType>({} as contextType ); 
-function App() { 
-  // const filesCollection= useListReaders(fireWall);
-  
-  const upload=useUpload(config.server,{enabled:true}); 
-  const {ListReader:filesCollection}=useUploader(fireWall);
+function App() {  
+  const {ListReader:filesCollection,upload,clear:clearUploader}=useUploader(config.server,fireWall,{enabled:true});
   const inputState=Boolean(filesCollection.files.length); 
   console.log(upload);
   const handleInput=(e: ChangeEvent<HTMLInputElement>)=>{
@@ -51,7 +44,7 @@ function App() {
                                               : x.isProgress ? <ProgressPeace key={y} img={x.result} fraction={x.progress} />
                                               :x.isError ?  <PeaceReload key={y} name={x.name} size={String(x.size)} /> :null; 
                             })}
-                      { upload.isError  && <ErrorHandler onDelete={upload.initState} messageError={upload.errorMessage ?? undefined}  status={100}/>  }  
+                      { upload.isError  && <ErrorHandler onDelete={clearUploader} messageError={upload.errorMessage ?? undefined}  status={100}/>  }  
                       {filesCollection.rejected.length>0 && filesCollection.rejected.map((x,y)=><PeaceError key={y} name={x.name} messageError={x.message}  />)}
                       {(filesCollection.element===null) &&   <Welcom />}
          

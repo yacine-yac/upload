@@ -2,9 +2,11 @@ import { ListReaderReturn } from "./reader/listfiles"
 import { uploadParams, uploadreturn } from "./upload/typeUpload";
 
 export type uploader=(
-    fireWall?:{size?:number, type?:string[]}
+    url:string,
+    fireWall?:{size?:number, type?:string[]},
+    params?:{data?:FileList,enabled?:boolean}
 )=>{
-    upload:null | uploadreturn ,
-    setUpload:(url:string,params?:{data?:FileList,enabled?:boolean}) =>void;
+    upload: uploadreturn ,
+    clear:()=>void,
     ListReader: ListReaderReturn
 }
