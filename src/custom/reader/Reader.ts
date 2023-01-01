@@ -19,7 +19,7 @@ export class Reader {
         this.name=file.name;
         this.size=convertSize(file.size);
         this.type=file.type; 
-        this.reader.readAsDataURL(file);
+        this.reader.readAsArrayBuffer(file);
         this.selfDestroy=destroy;
     } 
     startRead(){
@@ -30,12 +30,12 @@ export class Reader {
     endRead(){
             this.reader.onloadend=(e)=>{ 
                 this.flag=true; 
-                this.isProgress=false;
-                this.result=this.reader.result;
+                this.isProgress=false;  
             }
     }
     getProgress(setFiles:React.Dispatch<React.SetStateAction<Reader[]>>) {
-        this.reader.onprogress = (e: ProgressEvent) => {  
+        // this.reader.onload=(e:ProgressEvent<FileReader>)=>{}
+        this.reader.onprogress = (e) => {   
             if (e.lengthComputable) {
                 this.current=e.loaded;
                 this.total=e.total; 
@@ -45,8 +45,9 @@ export class Reader {
         };
     }
     getResult() {
-        this.reader.onloadend = (e) => { 
-            this.result = this.reader.result;
+        this.reader.onload= (e) => { 
+            const fi=this.reader.result as ArrayBuffer; 
+            this.result=URL.createObjectURL(new Blob([fi], { type: 'image/png' } ))
         };
     }
     checkError(){
