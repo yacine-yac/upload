@@ -18,7 +18,13 @@ const   useUpload:uploadHook= function(url,params={data:{} as FileList,enabled:f
      */
     const dispatchEvents=()=>{
             uploadForm.xhr.onloadstart=(e)=>{ console.log('start');
-                        setState({...state,isProgress:true});
+                        setState({
+                            ...state,
+                            isProgress:true,
+                            isError:false,
+                            errorMessage:null,
+                            success:false
+                        });
             }; 
             uploadForm.xhr.upload.onprogress=(e)=>{ 
                 Math.round((e.loaded/e.total)*100);
