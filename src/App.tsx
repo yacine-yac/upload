@@ -36,7 +36,7 @@ function App() {
                     <h1>Uploading System</h1> 
                     <label><input disabled={inputState} value={filesCollection.value}   onChange={handleInput} type="file" name="uploading[]" id="upload" multiple /></label>
                 </div> 
-               {upload.isProgress && <Progress fraction={upload.progress+"%"} />}
+               {upload.isProgress && <Progress fraction={upload.progress} />}
                 <div  className="area2">
                       {/* <div className="area21" id="area_release"> */} 
                       {   filesCollection.files.length>0   && filesCollection.files.map((x:Reader,y:number)=>{ // console.log("eee",x.result);
