@@ -33,8 +33,7 @@ export class Reader {
                 this.isProgress=false;  
             }
     }
-    getProgress(setFiles:React.Dispatch<React.SetStateAction<Reader[]>>) {
-        // this.reader.onload=(e:ProgressEvent<FileReader>)=>{}
+    getProgress(setFiles:React.Dispatch<React.SetStateAction<Reader[]>>) { 
         this.reader.onprogress = (e) => {   
             if (e.lengthComputable) {
                 this.current=e.loaded;
