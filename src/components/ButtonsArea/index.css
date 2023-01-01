@@ -9,7 +9,9 @@
     cursor: pointer;
     font-family: Times,;font-weight: 100; 
 }
-.area_send button:nth-child(1){background-color: rgb(236, 233, 230);}
-.area_send button:nth-child(2){
+.area_send button[step-value="true"]:nth-child(1){background-color: rgb(236, 233, 230);}
+.area_send button[step-value="true"]:nth-child(2){
     width: 120px;
-    border: 2px solid var(--color_up);color: white;} 
+    border: 2px solid var(--color_up);color: white;}
+.area_send button[step-value="false"]:nth-child(1){background-image: url('../../icons/trash.png');} 
+.area_send button[step-value="false"]:hover{transition: 0.6 ease-in;opacity: 0.65;}

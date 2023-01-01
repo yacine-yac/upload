@@ -49,8 +49,8 @@ function App() {
                       {(filesCollection.element===null) &&   <Welcom />}
          
                 </div> 
-                {(filesCollection.files.length>0 && !upload.isError)  &&  <ButtonsArea clearAllFiles={filesCollection.initState} sendFiles={send}  /> }
- 
+                {(filesCollection.files.length>0 && !upload.isError)  &&  <ButtonsArea state={upload.success} clearAllFiles={filesCollection.initState} sendFiles={send}  /> }
+                 
 
       </form>  
   </div> 
