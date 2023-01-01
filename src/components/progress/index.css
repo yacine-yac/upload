@@ -11,28 +11,22 @@
     position: relative;
     width: 200px;
     height: 200px;
-    z-index: 1000;
+    z-index: 1000; 
   }
 .area_prog svg text{font-size: 2rem;} 
 .area_prog svg circle {
     width: 100%;
     height: 100%;
-    fill: none; 
-     /* transition: stroke-dashoffset 0.35s; */
+    fill: none;  
     stroke:var(--progressArea-ground);
     stroke-width: 10;
-    stroke-linecap: round;
-    stroke-dasharray: 480; 
-    stroke-dashoffset:480;
+    stroke-linecap: round; 
     transform: translate(6px, 10px);
 }
-.area_prog svg circle:nth-child(1){
-      stroke-dashoffset: 0; 
+.area_prog svg circle:nth-child(1){ 
       stroke: #6e808b;
       transform: translate(5px, 5px);
 }
-.area_prog svg circle:nth-child(2){
-    stroke-dashoffset:var(--anm);
-    stroke: #ff0479;
-    
-}
+.area_prog svg circle:nth-child(2){ 
+    stroke: #ff0479; 
+} 
