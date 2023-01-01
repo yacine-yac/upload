@@ -25,8 +25,12 @@ class FormUpload implements Iformupload{
                 Array.from(data,(x,y)=>{this.formdata.append('uploading[]',x)}); 
                 return this;
      }
-     send(){ console.log('send',this.formdata.getAll('uploading[]'));
-            this.xhr.open("POST",this.url);
+     openConnection(){
+              this.xhr.open("POST",this.url);
+              return this;
+     }
+     send(){  //console.log('send',this.formdata.getAll('uploading[]'));
+            
             this.xhr.send(this.formdata);
       }
 }

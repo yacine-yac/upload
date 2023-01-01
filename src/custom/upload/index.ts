@@ -17,19 +17,19 @@ const   useUpload:uploadHook= function(url,params={data:{} as FileList,enabled:f
      * It allows to handle all events related to upload (loadstart,loadend,progress,error)
      */
     const dispatchEvents=()=>{
-            uploadForm.xhr.upload.addEventListener("loadstart",(e)=>{ 
+            uploadForm.xhr.onloadstart=(e)=>{ console.log('start');
                         setState({...state,isProgress:true});
-            });
-            uploadForm.xhr.addEventListener("progress",(e)=>{
-                console.log('event ')
+            }; 
+            uploadForm.xhr.upload.onprogress=(e)=>{ 
+                Math.round((e.loaded/e.total)*100);
                         setState({  
                             ...state,
                             isProgress:true,
-                            progress: Math.round(e.loaded/e.total)*100,
+                            progress:Math.round((e.loaded/e.total*100)),
                             loaded:e.loaded,
                             total:e.total
                         });
-            });
+            };
             uploadForm.xhr.addEventListener('error',(e)=>{console.log('fhfhfhdhx',uploadForm.xhr);
                         setState({
                             ...state,
@@ -58,8 +58,9 @@ const   useUpload:uploadHook= function(url,params={data:{} as FileList,enabled:f
       */
     const dispatch=()=>{ 
         if(uploadForm.files?.length as number>0 ){
+            uploadForm.openConnection();
+              dispatchEvents();
              uploadForm.send();
-             dispatchEvents();
         }else{ 
              setState({...state,isError:true,errorMessage:"There is no file to upload!"});
         }
