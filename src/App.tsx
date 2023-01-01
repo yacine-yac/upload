@@ -44,7 +44,7 @@ function App() {
                                               : x.isProgress ? <ProgressPeace key={y} img={x.result} fraction={x.progress} />
                                               :x.isError ?  <PeaceReload key={y} name={x.name} size={String(x.size)} /> :null; 
                             })}
-                      { upload.isError  && <ErrorHandler onDelete={clearUploader} messageError={upload.errorMessage ?? undefined}  status={100}/>  }  
+                      { upload.isError  && <ErrorHandler onDelete={clearUploader} messageError={upload.errorMessage ?? undefined} status={100} onreLoad={upload.dispatch}/>  }  
                       {filesCollection.rejected.length>0 && filesCollection.rejected.map((x,y)=><PeaceError key={y} name={x.name} messageError={x.message}  />)}
                       {(filesCollection.element===null) &&   <Welcom />}
          
