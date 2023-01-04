@@ -1,7 +1,5 @@
-# Upload System App
-This App allows user uploading files to server by specifying files type accpted by server.
-
-Nbr: In our case the App accpets pictures and videos 
+# Upload
+This PAckage provide hooks as 
 
 ## build: 
 This app created by:
