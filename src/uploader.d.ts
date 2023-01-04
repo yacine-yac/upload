@@ -1,5 +1,5 @@
 import { ListReaderReturn } from "./reader/listfiles"
-import { uploadParams, uploadreturn } from "./upload/typeUpload";
+import { uploadParams, uploadreturn } from "./custom/upload/typeUpload";
 
 export type uploader=(
     url:string,

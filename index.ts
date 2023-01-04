@@ -1,6 +1,6 @@
-import useUpload from "./upload";
-import { useListReaders } from "./reader";
-import {uploader} from "./uploader"; 
+import useUpload from "./src/custom/upload";
+import { useListReaders } from "./src/reader";
+import {uploader} from "./src/uploader"; 
 
 const useUploader:uploader=(url,fireWall,params)=>{
     const List=useListReaders(fireWall); 
